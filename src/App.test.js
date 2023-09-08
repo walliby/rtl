@@ -12,6 +12,6 @@ describe("App", () => {
   });
 
   it("displays username when submitting form", () => {
-    expect(true).toBeTruthy();
+    expect(true).toBe(true);
   });
 });
