@@ -37,5 +37,11 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/reportWebVitals.js",
+      "<rootDir>/src/index.js"
+    ]
   }
 }

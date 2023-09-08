@@ -1,0 +1,30 @@
+name: Jest test coverage
+
+on: pull_request
+
+jobs:
+  coverage_report:
+    name: Generate coverage report
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+          registry-url: "https://registry.npmjs.org"
+          always-auth: true
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Run test coverage
+        run: npm run test-coverage
+      - name: Setup LCOV
+        uses: hrishikesh-kadam/setup-lcov@v1
+      - name: Report code coverage
+        uses: zgosalvez/github-actions-report-lcov@v3
+        with:
+          coverage-files: coverage/lcov.info
+          minimum-coverage: 80
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          update-comment: true
