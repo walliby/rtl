@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 
-function App() {
-  const [username, setUsername] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+function App({ initialName = "" }) {
+  const [username, setUsername] = useState(initialName);
+  const [isSubmitted, setIsSubmitted] = useState(!!initialName);
 
   function handleSumbit(e) {
     e.preventDefault();

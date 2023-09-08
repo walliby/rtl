@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
 describe("App", () => {
@@ -11,7 +11,31 @@ describe("App", () => {
     expect(linkElement).toBeInTheDocument();
   });
 
-  it("displays username when submitting form", () => {
-    expect(true).toBe(true);
+  it("displays username when username is entered and form is submitted", () => {
+    render(<App />);
+    const username = "Joshua";
+    const inputField = screen.getByLabelText(/username/i);
+    const submitButton = screen.getByRole("button", { name: /submit/i });
+    const displayText = `Your username is: ${username}`;
+
+    expect(screen.queryByText(displayText)).toBeNull();
+
+    fireEvent.change(inputField, { target: { value: "Joshua" } });
+    fireEvent.click(submitButton);
+
+    expect(screen.getByText(displayText)).toBeInTheDocument();
+  });
+
+  it("clears name when clear button is pressed", () => {
+    const username = "Bob";
+    render(<App initialName={username} />);
+
+    const displayText = `Your username is: ${username}`;
+    expect(screen.getByText(displayText)).toBeInTheDocument();
+
+    const clearButton = screen.getByRole("button", { name: /clear/i });
+    fireEvent.click(clearButton);
+
+    expect(screen.queryByText(displayText)).toBeNull();
   });
 });
