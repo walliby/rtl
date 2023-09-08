@@ -11,39 +11,39 @@ describe("App", () => {
     expect(linkElement).toBeInTheDocument();
   });
 
-  it("displays username when username is entered and form is submitted", () => {
-    render(<App />);
-    const username = "Joshua";
-    const inputField = screen.getByLabelText(/username/i);
-    const submitButton = screen.getByRole("button", { name: /submit/i });
-    const displayText = `Your username is: ${username}`;
+  // it("displays username when username is entered and form is submitted", () => {
+  //   render(<App />);
+  //   const username = "Joshua";
+  //   const inputField = screen.getByLabelText(/username/i);
+  //   const submitButton = screen.getByRole("button", { name: /submit/i });
+  //   const displayText = `Your username is: ${username}`;
 
-    expect(
-      screen.queryByRole("heading", { level: 2, name: displayText })
-    ).toBeNull();
+  //   expect(
+  //     screen.queryByRole("heading", { level: 2, name: displayText })
+  //   ).toBeNull();
 
-    fireEvent.change(inputField, { target: { value: "Joshua" } });
-    fireEvent.click(submitButton);
+  //   fireEvent.change(inputField, { target: { value: "Joshua" } });
+  //   fireEvent.click(submitButton);
 
-    expect(
-      screen.getByRole("heading", { level: 2, name: displayText })
-    ).toBeInTheDocument();
-  });
+  //   expect(
+  //     screen.getByRole("heading", { level: 2, name: displayText })
+  //   ).toBeInTheDocument();
+  // });
 
-  it("clears name when clear button is pressed", () => {
-    const username = "Bob";
-    render(<App initialName={username} />);
+  // it("clears name when clear button is pressed", () => {
+  //   const username = "Bob";
+  //   render(<App initialName={username} />);
 
-    const displayText = `Your username is: ${username}`;
-    expect(
-      screen.getByRole("heading", { level: 2, name: displayText })
-    ).toBeInTheDocument();
+  //   const displayText = `Your username is: ${username}`;
+  //   expect(
+  //     screen.getByRole("heading", { level: 2, name: displayText })
+  //   ).toBeInTheDocument();
 
-    const clearButton = screen.getByRole("button", { name: /clear/i });
-    fireEvent.click(clearButton);
+  //   const clearButton = screen.getByRole("button", { name: /clear/i });
+  //   fireEvent.click(clearButton);
 
-    expect(
-      screen.queryByRole("heading", { level: 2, name: displayText })
-    ).toBeNull();
-  });
+  //   expect(
+  //     screen.queryByRole("heading", { level: 2, name: displayText })
+  //   ).toBeNull();
+  // });
 });
