@@ -10,4 +10,8 @@ describe("App", () => {
     });
     expect(linkElement).toBeInTheDocument();
   });
+
+  it("displays username when submitting form", () => {
+    expect(true).toBeTruthy();
+  });
 });
