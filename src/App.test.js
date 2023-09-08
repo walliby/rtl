@@ -18,12 +18,16 @@ describe("App", () => {
     const submitButton = screen.getByRole("button", { name: /submit/i });
     const displayText = `Your username is: ${username}`;
 
-    expect(screen.queryByText(displayText)).toBeNull();
+    expect(
+      screen.queryByRole("heading", { level: 2, name: displayText })
+    ).toBeNull();
 
     fireEvent.change(inputField, { target: { value: "Joshua" } });
     fireEvent.click(submitButton);
 
-    expect(screen.getByText(displayText)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: displayText })
+    ).toBeInTheDocument();
   });
 
   it("clears name when clear button is pressed", () => {
@@ -31,11 +35,15 @@ describe("App", () => {
     render(<App initialName={username} />);
 
     const displayText = `Your username is: ${username}`;
-    expect(screen.getByText(displayText)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: displayText })
+    ).toBeInTheDocument();
 
     const clearButton = screen.getByRole("button", { name: /clear/i });
     fireEvent.click(clearButton);
 
-    expect(screen.queryByText(displayText)).toBeNull();
+    expect(
+      screen.queryByRole("heading", { level: 2, name: displayText })
+    ).toBeNull();
   });
 });
