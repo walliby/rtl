@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 
-function App({ initialName = "" }) {
+function App({ initialName }) {
   const [username, setUsername] = useState(initialName);
   const [isSubmitted, setIsSubmitted] = useState(!!initialName);
 
