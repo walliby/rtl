@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./App.css";
 
-function App() {
-  const [username, setUsername] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
+function App({ initialName }) {
+  const [username, setUsername] = useState(initialName);
+  const [isSubmitted, setIsSubmitted] = useState(!!initialName);
 
   function handleSumbit(e) {
     e.preventDefault();
-    setIsVisible(true);
+    setIsSubmitted(true);
   }
 
   function handleOnChange(e) {
@@ -16,7 +16,7 @@ function App() {
 
   function handleClear() {
     setUsername("");
-    setIsVisible(false);
+    setIsSubmitted(false);
   }
 
   return (
@@ -35,7 +35,7 @@ function App() {
           Clear
         </button>
       </form>
-      <h2>Your username is: {isVisible && username}</h2>
+      <h2>Your username is: {isSubmitted && username}</h2>
     </div>
   );
 }
